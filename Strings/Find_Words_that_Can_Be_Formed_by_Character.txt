@@ -1,0 +1,24 @@
+// Time Complexity: O(n * k)
+// Space Complexity: O(1)
+int countCharacters(char** words, int wordsSize, char* chars) {
+    int count, res = 0;
+    int i, j, k;
+    for(i = 0; i < wordsSize; i++) {
+        count = 0;
+        char temp[100];
+        strcpy(temp, chars);   
+        for(j = 0; j < strlen(words[i]); j++) {
+            for(k = 0; k < strlen(temp); k++) {
+                if(words[i][j] == temp[k]) {
+                    count++;
+                    temp[k] = '*';   
+                    break;
+                }
+            }
+        }
+        if(count == strlen(words[i])) {
+            res += strlen(words[i]);   
+        }
+    }
+    return res;
+}
